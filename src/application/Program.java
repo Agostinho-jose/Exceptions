@@ -37,15 +37,13 @@ public class Program {
 		    checkOut = sdf.parse(scan.next());
 	        
 //Validação: Date now(data de agora) se teste for antes de agora apresentar error
-		    Date now = new Date();
-		    if(checkIn.before(now) || checkOut.before(now)) {
-		    	System.out.println("Error in reservation");
-		    } else if(!checkOut.after(checkIn)) {
-		    	System.out.println("Error in reservation");
-		    } else {
-		    	  reservation.updateDates(checkIn, checkOut);
-				  System.out.println("Reservation: " + reservation);
-		    }
+		    
+		    String error =  reservation.updateDates(checkIn, checkOut);
+			if(error != null) {
+				System.out.println("Reservation: " + error); 
+			} else {
+				System.out.println("Reservation: " + reservation);
+				  }
 	    }
 		scan.close();
 	}

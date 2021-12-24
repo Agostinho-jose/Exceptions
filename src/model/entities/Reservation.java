@@ -48,9 +48,18 @@ public class Reservation {
 	}
 	
 //Metodo recebe as datas e atualiza sistema
-	public void updateDates(Date checkIn, Date checkOut) {
+	public String updateDates(Date checkIn, Date checkOut) {
+		
+		 Date now = new Date();
+		    if(checkIn.before(now) || checkOut.before(now)) {
+		    return "Error in reservation: update must be future dates";
+		    } else if(!checkOut.after(checkIn)) {
+		    return "Check-out date must be after check-in date";
+		    }
+		
 		this.checkIn = checkIn; //checkIn do objeto recebe chekIn do parametro
 		this.checkOut = checkOut;
+		return null;
 	}
 
 	@Override
